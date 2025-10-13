@@ -7,6 +7,8 @@
 #include "ui/utils/event.hpp"
 #include "ui/widgets/base_widget.hpp"
 
+#include <iostream>
+
 namespace UI::Widgets::Inputs
 {
     template<typename T>
@@ -24,7 +26,7 @@ namespace UI::Widgets::Inputs
             m_fastStep { fastStep },
             m_selectAllOnClick { selectAllOnClick }
         {
-            setFormat<T>();
+            setFormat();
         }
 
         virtual ~SingleNumberInput() override
@@ -84,22 +86,19 @@ namespace UI::Widgets::Inputs
         bool m_selectAllOnClick = false;
 
     private:
-        template <typename T>
         void setFormat()
         {
-            std::string name = typeid(T).name();
-
-            if (name == "bool")
+            if (typeid(T) == typeid(bool))
                 throw std::runtime_error("SingleNumberInput doesn't support bool value");
 
-            if (name == "float")
+            if (typeid(T) == typeid(float))
             {
                 m_dataType = ImGuiDataType_Float;
                 m_format = "%.3f";
                 return;
             }
 
-            if (name == "double")
+            if (typeid(T) == typeid(double))
             {
                 m_dataType = ImGuiDataType_Double;
                 m_format = "%.5f";

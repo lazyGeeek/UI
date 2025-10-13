@@ -15,7 +15,7 @@ namespace UI::Widgets::Inputs
     class MultipleNumbersInput : public BaseWidget
     {
         static_assert(std::is_arithmetic<T>::value, "MultipleNumbersInput T should be arithmetic value");
-        static_assert(Size > 2, "MultipleNumbersInput number of elements shoulb be greater then 1");
+        static_assert(Size >= 2, "MultipleNumbersInput number of elements shoulb be greater then 1");
 
     public:
         MultipleNumbersInput(const std::string& label,
@@ -29,7 +29,7 @@ namespace UI::Widgets::Inputs
             m_fastStep { fastStep },
             m_selectAllOnClick { selectAllOnClick }
         {
-            setFormat<T>();
+            setFormat();
         }
 
         virtual ~MultipleNumbersInput() override
@@ -98,22 +98,19 @@ namespace UI::Widgets::Inputs
         bool m_selectAllOnClick = false;
 
     private:
-        template <typename T>
         void setFormat()
         {
-            std::string name = typeid(T).name();
-
-            if (name == "bool")
+            if (typeid(T) == typeid(bool))
                 throw std::runtime_error("MultipleNumbersInput doesn't support bool value");
 
-            if (name == "float")
+            if (typeid(T) == typeid(float))
             {
                 m_dataType = ImGuiDataType_Float;
                 m_format = "%.3f";
                 return;
             }
 
-            if (name == "double")
+            if (typeid(T) == typeid(double))
             {
                 m_dataType = ImGuiDataType_Double;
                 m_format = "%.5f";

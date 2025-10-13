@@ -10,7 +10,7 @@ namespace UI::Widgets::Visuals
     class Image : public BaseWidget, public Interfaces::Resizable
     {
     public:
-        Image(uint32_t textureId);
+        Image(uint32_t textureId, float width, float height);
         virtual ~Image() override = default;
 
         Image(const Image& other)             = delete;
@@ -22,13 +22,7 @@ namespace UI::Widgets::Visuals
         virtual void DrawImpl() override;
 
     private:
-        union TextureId
-        {
-            uint32_t Id;
-            void* raw;
-        };
-
-        TextureId m_textureId;
+        uint32_t m_id = 0;
     };
 }
 

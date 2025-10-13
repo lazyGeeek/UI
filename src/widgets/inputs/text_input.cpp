@@ -5,9 +5,9 @@
 namespace UI::Widgets::Inputs
 {
     TextInput::TextInput(const std::string& label, const std::string& content,
-        const std::string& hint, bool selectAllOnClick)
-        : BaseWidget(label), m_content{ content }, m_hint { hint },
-          m_selectAllOnClick{ selectAllOnClick } { }
+        const std::string& hint, bool selectAllOnClick) :
+            BaseWidget(label), m_content{ content }, m_hint { hint },
+            m_selectAllOnClick{ selectAllOnClick } { }
 
     TextInput::~TextInput()
     {

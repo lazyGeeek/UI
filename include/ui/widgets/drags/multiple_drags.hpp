@@ -12,7 +12,7 @@
 namespace UI::Widgets::Drags
 {
     template <typename T, size_t Size>
-    class MultipleDrags : public BaseWidget
+    class MultipleDrags : public UI::Widgets::BaseWidget
     {
         static_assert(std::is_arithmetic<T>::value, "MultipleDrags T should be arithmetic value");
         static_assert(Size > 2, "MultipleDrags number of elements shoulb be greater then 1");
@@ -27,7 +27,7 @@ namespace UI::Widgets::Drags
               m_min { min }, m_max { max }, m_values { values },
               m_speed { speed }
         {
-            setFormat<T>();
+            setFormat();
         }
 
         virtual ~MultipleDrags()
@@ -52,7 +52,7 @@ namespace UI::Widgets::Drags
 
         virtual void SetValues(const std::array<T, Size>& values) { m_values = values; }
 
-        Tools::Eventing::Event<std::array<T, Size>&> ValueChangedEvent;
+        UI::Utils::Event<std::array<T, Size>&> ValueChangedEvent;
 
     protected:
         virtual void DrawImpl() override
@@ -84,22 +84,19 @@ namespace UI::Widgets::Drags
         ImGuiDataType m_dataType = ImGuiDataType_Float;
 
     private:
-        template <typename T>
         void setFormat()
         {
-            std::string name = typeid(T).name();
-
-            if (name == "bool")
+            if (typeid(T) == typeid(bool))
                 throw std::runtime_error("MultipleDrags doesn't support bool value");
 
-            if (name == "float")
+            if (typeid(T) == typeid(float))
             {
                 m_dataType = ImGuiDataType_Float;
                 m_format = "%.3f";
                 return;
             }
 
-            if (name == "double")
+            if (typeid(T) == typeid(double))
             {
                 m_dataType = ImGuiDataType_Double;
                 m_format = "%.5f";

@@ -59,7 +59,7 @@ namespace UI::Panels
         UI::Utils::Event<> CloseEvent;
 
     protected:
-        void DrawImpl() override;
+        virtual void DrawImpl() override;
 
         std::string m_name = "";
 
