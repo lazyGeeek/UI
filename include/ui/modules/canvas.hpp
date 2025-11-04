@@ -24,7 +24,7 @@ namespace UI::Modules
         Canvas& operator=(const Canvas&& other) = delete;
 
         template<typename T, typename... Args>
-        std::shared_ptr<T> AddPanel(Args&&... args)
+        std::shared_ptr<T> CreatePanel(Args&&... args)
         {
             static_assert(std::is_base_of<Panels::BasePanel, T>::value, "T should derive from BasePanel");
 

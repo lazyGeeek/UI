@@ -36,9 +36,11 @@ namespace UI::Widgets
 
         virtual void SetEnabled(bool enabled);
         virtual void SetSameLine(bool sameLine);
+        virtual void Separate(bool separated);
 
-        virtual bool IsEnabled()  const;
-        virtual bool IsSameLine() const;
+        virtual bool IsEnabled()   const;
+        virtual bool IsSameLine()  const;
+        virtual bool IsSeparated() const;
 
     protected:
         virtual void DrawImpl() = 0;
@@ -48,8 +50,9 @@ namespace UI::Widgets
         std::string m_widgetId = "";
         std::string m_label    = "";
 
-        bool m_enabled  = true;
-        bool m_sameLine = false;
+        bool m_enabled   = true;
+        bool m_sameLine  = false;
+        bool m_separated = false;
 
     private:
         friend void WidgetContainer::AddWidget(std::shared_ptr<BaseWidget> widget, bool manageMemory);

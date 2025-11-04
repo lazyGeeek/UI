@@ -19,6 +19,9 @@ namespace UI::Widgets
             if (m_sameLine)
                 ImGui::SameLine();
 
+            if (m_separated)
+                ImGui::Separator();
+                
             return true;
         }
 
@@ -70,6 +73,11 @@ namespace UI::Widgets
         m_sameLine = sameLine;
     }
 
+    void BaseWidget::Separate(bool separated)
+    {
+        m_separated = separated;
+    }
+
     bool BaseWidget::IsEnabled() const
     {
         return m_enabled;
@@ -78,5 +86,10 @@ namespace UI::Widgets
     bool BaseWidget::IsSameLine() const
     {
         return m_sameLine;
+    }
+
+    bool BaseWidget::IsSeparated() const
+    {
+        return m_separated;
     }
 }
