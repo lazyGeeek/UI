@@ -163,6 +163,7 @@ namespace UI::Panels
         if (!m_windowSettings.AllowInputs)             windowFlags |= ImGuiWindowFlags_NoInputs;
         if (!m_windowSettings.Scrollable)              windowFlags |= ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoScrollbar;
         if (!m_windowSettings.TitleBar)                windowFlags |= ImGuiWindowFlags_NoTitleBar;
+        if (m_autoSize)                                windowFlags |= ImGuiWindowFlags_AlwaysAutoResize;
 
         ImVec2 minSizeConstraint(m_minWidth, m_minHeight);
         ImVec2 maxSizeConstraint(m_maxWidth, m_maxHeight);
