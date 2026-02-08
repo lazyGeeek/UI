@@ -5,14 +5,12 @@
 #include "ui/widgets/base_widget.hpp"
 #include "ui/widgets/interfaces/resizable.hpp"
 
-#include <imgui/imgui.h>
-
 #include <limits>
 #include <vector>
 
 namespace UI::Widgets::Plots
 {
-    class BasePlot : public BaseWidget, public Interfaces::Resizable
+    class BasePlot : public BaseWidget, public Widgets::Interfaces::Resizable
     {
     public:
         BasePlot(const std::string& label,

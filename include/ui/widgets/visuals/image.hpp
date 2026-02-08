@@ -7,7 +7,7 @@
 
 namespace UI::Widgets::Visuals
 {
-    class Image : public BaseWidget, public Interfaces::Resizable
+    class Image : public BaseWidget, public Widgets::Interfaces::Resizable
     {
     public:
         Image(uint32_t textureId, float width, float height);

@@ -2,7 +2,7 @@
 #ifndef UI_PANELS_TRANSFORMABLE_PANEL_HPP_
 #define UI_PANELS_TRANSFORMABLE_PANEL_HPP_
 
-#include "base_panel.hpp"
+#include "ui/panels/base_panel.hpp"
 #include "ui/settings/alignment.hpp"
 #include "ui/widgets/interfaces/resizable.hpp"
 
